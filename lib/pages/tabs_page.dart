@@ -55,8 +55,8 @@ class _TabsPageState extends State<TabsPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.bottomRight,
-            end: Alignment.topLeft,
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
             colors: [Theme.of(context).colorScheme.secondary, Colors.white],
           ),
         ),
