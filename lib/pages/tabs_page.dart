@@ -1,4 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:local_weather/pages/current_weather_page.dart';
+import 'package:local_weather/pages/forecast_page.dart';
+import 'package:local_weather/pages/uv_index_page.dart';
+
+class _Page {
+  final Widget page;
+  final String title;
+
+  const _Page({
+    required this.page,
+    required this.title,
+  });
+}
 
 class TabsPage extends StatefulWidget {
   const TabsPage({Key? key, required this.title}) : super(key: key);
@@ -10,15 +23,30 @@ class TabsPage extends StatefulWidget {
 }
 
 class _TabsPageState extends State<TabsPage> {
+  final _pages = const [
+    _Page(
+      page: CurrentWeatherPage(),
+      title: 'Current Weather',
+    ),
+    _Page(
+      page: ForecastPage(),
+      title: 'Forecasts',
+    ),
+    _Page(
+      page: UVIndexPage(),
+      title: 'UV Index',
+    ),
+  ];
+
   int _currentTabIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(_pages[_currentTabIndex].title),
       ),
-      body: null,
+      body: _pages[_currentTabIndex].page,
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         selectedItemColor: Colors.white,
