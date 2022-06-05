@@ -44,9 +44,24 @@ class _TabsPageState extends State<TabsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_pages[_currentTabIndex].title),
+        title: Text(
+          _pages[_currentTabIndex].title,
+          style: const TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: Colors.white,
       ),
-      body: _pages[_currentTabIndex].page,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomRight,
+            end: Alignment.topLeft,
+            colors: [Theme.of(context).colorScheme.secondary, Colors.white],
+          ),
+        ),
+        child: _pages[_currentTabIndex].page,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         selectedItemColor: Colors.white,
