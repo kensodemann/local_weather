@@ -65,6 +65,7 @@ class _TabsPageState extends State<TabsPage> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white60,
         currentIndex: _currentTabIndex,
         onTap: (idx) => setState(() => _currentTabIndex = idx),
         items: const <BottomNavigationBarItem>[
