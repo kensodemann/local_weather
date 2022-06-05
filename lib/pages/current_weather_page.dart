@@ -5,6 +5,11 @@ class CurrentWeatherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Current Weather'));
+    return Center(
+      child: Text(
+        'Current Weather',
+        style: Theme.of(context).textTheme.titleLarge,
+      ),
+    );
   }
 }

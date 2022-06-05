@@ -5,6 +5,11 @@ class UVIndexPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('UV Index'));
+    return Center(
+      child: Text(
+        'UV Index',
+        style: Theme.of(context).textTheme.titleLarge,
+      ),
+    );
   }
 }
