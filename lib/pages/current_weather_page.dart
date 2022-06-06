@@ -9,6 +9,7 @@ class CurrentWeatherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final condition = Condition.fromRawCondition(202);
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -30,8 +31,8 @@ class CurrentWeatherPage extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const ConditionImage(condition: Condition.sunny, size: 200),
-          const ConditionText(condition: Condition.sunny),
+          ConditionImage(condition: condition, size: 192),
+          ConditionText(condition: condition),
         ],
       ),
     );
