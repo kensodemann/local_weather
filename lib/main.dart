@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:local_weather/models/weather.dart';
 import 'package:local_weather/pages/tabs_page.dart';
 import 'package:local_weather/theme.dart';
+import 'package:provider/provider.dart';
 
 Future main() async {
   await dotenv.load();
-  print(dotenv.env['WEATHER_KEY']);
   runApp(const MyApp());
 }
 
@@ -14,10 +15,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: theme,
-      home: const TabsPage(title: 'Flutter Demo Home Page'),
+    return ChangeNotifierProvider(
+      create: (_) => Weather(),
+      child: MaterialApp(
+        title: 'Local Weather',
+        theme: theme,
+        home: const TabsPage(title: 'Local Weather'),
+      ),
     );
   }
 }

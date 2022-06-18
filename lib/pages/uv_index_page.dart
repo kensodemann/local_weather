@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:local_weather/models/uv_condition.dart';
+import 'package:local_weather/models/weather.dart';
+import 'package:provider/provider.dart';
 
 class UVIndexPage extends StatelessWidget {
   static const _uvRiskColor = [
@@ -13,7 +15,7 @@ class UVIndexPage extends StatelessWidget {
   const UVIndexPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final uvCondition = UVCondition.fromIndex(1.0);
+    final weather = Provider.of<Weather>(context);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
@@ -23,17 +25,17 @@ class UVIndexPage extends StatelessWidget {
             height: 40,
           ),
           Text(
-            '${uvCondition.uvIndex.toStringAsFixed(1)} ${uvCondition.description}',
+            '${weather.uvCondition.uvIndex.toStringAsFixed(1)} ${weather.uvCondition.description}',
             style: Theme.of(context)
                 .textTheme
                 .titleLarge!
-                .copyWith(color: _uvRiskColor[uvCondition.riskFactor]),
+                .copyWith(color: _uvRiskColor[weather.uvCondition.riskFactor]),
           ),
           const SizedBox(
             height: 20,
           ),
           Text(
-            uvCondition.advice,
+            weather.uvCondition.advice,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         ],

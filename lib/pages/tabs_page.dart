@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:local_weather/models/weather.dart';
 import 'package:local_weather/pages/current_weather_page.dart';
 import 'package:local_weather/pages/forecast_page.dart';
 import 'package:local_weather/pages/uv_index_page.dart';
+import 'package:provider/provider.dart';
 
 class _Page {
   final Widget page;
@@ -39,6 +41,14 @@ class _TabsPageState extends State<TabsPage> {
   ];
 
   int _currentTabIndex = 0;
+
+  @override
+  void initState() {
+    Future.delayed(Duration.zero, () {
+      Provider.of<Weather>(context, listen: false).load();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
