@@ -44,7 +44,7 @@ class _TabsPageState extends State<TabsPage> {
 
   @override
   void initState() {
-    Future.delayed(Duration.zero, () {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<Weather>(context, listen: false).load();
     });
     super.initState();

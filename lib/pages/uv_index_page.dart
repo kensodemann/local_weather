@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:local_weather/models/uv_condition.dart';
 import 'package:local_weather/models/weather.dart';
 import 'package:provider/provider.dart';
 

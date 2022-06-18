@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:local_weather/models/condition.dart';
 import 'package:local_weather/models/weather.dart';
 import 'package:local_weather/widgets/condition_image.dart';
 import 'package:local_weather/widgets/condition_text.dart';

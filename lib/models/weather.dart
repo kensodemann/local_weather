@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:local_weather/models/condition.dart';
-import 'package:local_weather/models/daily_forcast.dart';
+import 'package:local_weather/models/daily_forecast.dart';
 import 'package:local_weather/models/uv_condition.dart';
 
 class Weather with ChangeNotifier {
