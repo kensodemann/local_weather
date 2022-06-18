@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:local_weather/pages/tabs_page.dart';
 import 'package:local_weather/theme.dart';
 
-void main() {
+Future main() async {
+  await dotenv.load();
+  print(dotenv.env['WEATHER_KEY']);
   runApp(const MyApp());
 }
 
