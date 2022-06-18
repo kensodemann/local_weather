@@ -11,6 +11,10 @@ class UVCondition {
     required this.advice,
   });
 
+  factory UVCondition.fromJson(Map<String, dynamic> json) {
+    return UVCondition.fromIndex(json['uvi'] as double);
+  }
+
   factory UVCondition.fromIndex(double uvIndex) {
     if (uvIndex < 3) {
       return UVCondition(

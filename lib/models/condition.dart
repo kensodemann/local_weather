@@ -18,6 +18,10 @@ class Condition {
   const Condition(
       {required this.title, required this.description, required this.image});
 
+  factory Condition.fromJson(Map<String, dynamic> json) {
+    return Condition.fromRawCondition(json['weather'][0]['id'] as int);
+  }
+
   factory Condition.fromRawCondition(int rawCondition) {
     switch (rawCondition) {
       case 200:
