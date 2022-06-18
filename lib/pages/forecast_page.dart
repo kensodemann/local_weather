@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:local_weather/models/weather.dart';
+import 'package:local_weather/widgets/condition_image.dart';
+import 'package:local_weather/widgets/condition_text.dart';
+import 'package:local_weather/widgets/temperature.dart';
 import 'package:provider/provider.dart';
 
 class ForecastPage extends StatelessWidget {
@@ -8,16 +12,69 @@ class ForecastPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final forecasts = Provider.of<Weather>(context).dailyForecasts;
-    return ListView(
-      children: forecasts
-          .map(
-            (forecast) => ListTile(
-              leading: Text(forecast.date.toString()),
-              title: Text(forecast.low.toString()),
-              subtitle: Text(forecast.condition.description),
-            ),
-          )
-          .toList(),
+    return ListView.separated(
+      itemCount: forecasts.length,
+      separatorBuilder: (ctx, index) => const Divider(),
+      itemBuilder: (ctx, index) {
+        return Container(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            children: [
+              ConditionImage(
+                condition: forecasts[index].condition,
+                size: 72,
+              ),
+              const Expanded(
+                child: Spacer(),
+              ),
+              SizedBox(
+                width: 225,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      DateFormat.yMMMEd().format(forecasts[index].date),
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    Text(
+                      forecasts[index].condition.title,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Low:',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        const Expanded(
+                          child: Spacer(),
+                        ),
+                        Temperature(
+                            temperature: forecasts[index].low,
+                            scale: Scale.fahrenheit)
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'High:',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        const Expanded(
+                          child: Spacer(),
+                        ),
+                        Temperature(
+                            temperature: forecasts[index].high,
+                            scale: Scale.fahrenheit)
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
