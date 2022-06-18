@@ -16,6 +16,7 @@ class ForecastPage extends StatelessWidget {
       itemCount: forecasts.length,
       separatorBuilder: (ctx, index) => const Divider(),
       itemBuilder: (ctx, index) {
+        final theme = Theme.of(ctx);
         return Container(
           padding: const EdgeInsets.all(10),
           child: Row(
@@ -28,44 +29,48 @@ class ForecastPage extends StatelessWidget {
                 child: Spacer(),
               ),
               SizedBox(
-                width: 225,
+                width: 212,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       DateFormat.yMMMEd().format(forecasts[index].date),
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: theme.textTheme.titleMedium,
                     ),
-                    Text(
-                      forecasts[index].condition.title,
-                      style: Theme.of(context).textTheme.titleMedium,
+                    ConditionText(
+                      condition: forecasts[index].condition,
+                      style: theme.textTheme.titleSmall,
                     ),
                     Row(
                       children: [
                         Text(
                           'Low:',
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: theme.textTheme.titleSmall,
                         ),
                         const Expanded(
                           child: Spacer(),
                         ),
                         Temperature(
-                            temperature: forecasts[index].low,
-                            scale: Scale.fahrenheit)
+                          temperature: forecasts[index].low,
+                          scale: Scale.fahrenheit,
+                          style: theme.textTheme.titleSmall,
+                        )
                       ],
                     ),
                     Row(
                       children: [
                         Text(
                           'High:',
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: theme.textTheme.titleSmall,
                         ),
                         const Expanded(
                           child: Spacer(),
                         ),
                         Temperature(
-                            temperature: forecasts[index].high,
-                            scale: Scale.fahrenheit)
+                          temperature: forecasts[index].high,
+                          scale: Scale.fahrenheit,
+                          style: theme.textTheme.titleSmall,
+                        )
                       ],
                     ),
                   ],

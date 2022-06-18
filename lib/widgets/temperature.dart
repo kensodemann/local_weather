@@ -8,9 +8,14 @@ enum Scale {
 class Temperature extends StatelessWidget {
   final double temperature;
   final Scale scale;
+  final TextStyle? style;
 
-  const Temperature({Key? key, required this.temperature, required this.scale})
-      : super(key: key);
+  const Temperature({
+    Key? key,
+    required this.temperature,
+    required this.scale,
+    this.style,
+  }) : super(key: key);
 
   String get _celsius {
     return '${(temperature - 273.15).toStringAsFixed(0)} ℃';
@@ -24,7 +29,7 @@ class Temperature extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       scale == Scale.celsius ? _celsius : _fahrenheit,
-      style: Theme.of(context).textTheme.titleMedium,
+      style: style ?? Theme.of(context).textTheme.titleMedium,
     );
   }
 }

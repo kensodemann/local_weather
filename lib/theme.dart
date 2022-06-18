@@ -27,7 +27,7 @@ final _baseTheme = ThemeData(
         ),
         titleSmall: const TextStyle(
           fontSize: 18,
-          color: Colors.grey,
+          fontWeight: FontWeight.bold,
         ),
       ),
   appBarTheme: ThemeData().appBarTheme.copyWith(
