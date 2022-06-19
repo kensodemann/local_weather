@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:local_weather/models/user_preferences.dart';
+import 'package:provider/provider.dart';
 
 enum Scale {
   celsius,
@@ -7,13 +9,11 @@ enum Scale {
 
 class Temperature extends StatelessWidget {
   final double temperature;
-  final Scale scale;
   final TextStyle? style;
 
   const Temperature({
     Key? key,
     required this.temperature,
-    required this.scale,
     this.style,
   }) : super(key: key);
 
@@ -27,6 +27,7 @@ class Temperature extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scale = Provider.of<UserPreferences>(context).scale;
     return Text(
       scale == Scale.celsius ? _celsius : _fahrenheit,
       style: style ?? Theme.of(context).textTheme.titleMedium,

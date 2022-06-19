@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:local_weather/models/user_preferences.dart';
+import 'package:local_weather/models/user_preferences.dart';
 import 'package:local_weather/models/weather.dart';
 import 'package:local_weather/widgets/condition_image.dart';
 import 'package:local_weather/widgets/condition_text.dart';
@@ -11,6 +13,8 @@ class CurrentWeatherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final weather = Provider.of<Weather>(context);
+    final userPreferences =
+        Provider.of<UserPreferences>(context, listen: false);
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -25,9 +29,11 @@ class CurrentWeatherPage extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          Temperature(
-            temperature: weather.temperature,
-            scale: Scale.fahrenheit,
+          GestureDetector(
+            onTap: () => userPreferences.toggleScale(),
+            child: Temperature(
+              temperature: weather.temperature,
+            ),
           ),
           const SizedBox(
             height: 20,

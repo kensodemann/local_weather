@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:local_weather/models/user_preferences.dart';
 import 'package:local_weather/models/weather.dart';
 import 'package:local_weather/pages/tabs_page.dart';
 import 'package:local_weather/theme.dart';
@@ -15,8 +16,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => Weather(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Weather>(
+          create: (_) => Weather(),
+        ),
+        ChangeNotifierProvider<UserPreferences>(
+          create: (_) => UserPreferences(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Local Weather',
         theme: theme,
