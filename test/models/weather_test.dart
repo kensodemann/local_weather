@@ -15,8 +15,8 @@ import 'weather_test.mocks.dart';
 void main() {
   group('load', () {
     final url = Uri.https('api.openweathermap.org', '/data/2.5/onecall', {
-      'lat': '43.074085',
-      'lon': '-89.381027',
+      'lat': '43.224',
+      'lon': '-89.843',
       'exclude': 'minutely',
       'appid': 'thisIsAFakeKey',
     });
@@ -84,20 +84,20 @@ void main() {
 
     test('should get the data from the server', () {
       final weather = Weather(client);
-      weather.load();
+      weather.load(43.224, -89.843);
       verify(client.get(url)).called(1);
     });
 
     test('should extract the temp', () async {
       final weather = Weather(client);
-      await weather.load();
+      await weather.load(43.224, -89.843);
       expect(weather.temperature, 282.21);
     });
 
     test('should extract the condition', () async {
       final expectedCondition = Condition.fromRawCondition(802);
       final weather = Weather(client);
-      await weather.load();
+      await weather.load(43.224, -89.843);
       expect(weather.condition.title, expectedCondition.title);
       expect(weather.condition.description, expectedCondition.description);
       expect(weather.condition.image, expectedCondition.image);
@@ -106,7 +106,7 @@ void main() {
     test('should extract the UV condition', () async {
       final expectedCondition = UVCondition.fromIndex(2.55);
       final weather = Weather(client);
-      await weather.load();
+      await weather.load(43.224, -89.843);
       expect(weather.uvCondition.advice, expectedCondition.advice);
       expect(weather.uvCondition.uvIndex, 2.55);
       expect(weather.uvCondition.riskFactor, expectedCondition.riskFactor);
@@ -115,7 +115,7 @@ void main() {
 
     test('should handle the empty daily list', () async {
       final weather = Weather(client);
-      await weather.load();
+      await weather.load(43.224, -89.843);
       expect(weather.dailyForecasts.length, 2);
     });
 
@@ -123,7 +123,7 @@ void main() {
       when(client.get(url)).thenAnswer(
           (_) async => http.Response(jsonEncode({...data, "daily": []}), 200));
       final weather = Weather(client);
-      await weather.load();
+      await weather.load(43.224, -89.843);
       expect(weather.dailyForecasts.length, 0);
     });
   });

@@ -2,13 +2,14 @@
 // in local_weather/test/pages/tabs_page_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i6;
-import 'dart:ui' as _i7;
+import 'dart:async' as _i5;
+import 'dart:ui' as _i6;
 
 import 'package:local_weather/models/condition.dart' as _i2;
-import 'package:local_weather/models/daily_forecast.dart' as _i5;
+import 'package:local_weather/models/current_location.dart' as _i4;
+import 'package:local_weather/models/daily_forecast.dart' as _i8;
 import 'package:local_weather/models/uv_condition.dart' as _i3;
-import 'package:local_weather/models/weather.dart' as _i4;
+import 'package:local_weather/models/weather.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -25,10 +26,56 @@ class _FakeCondition_0 extends _i1.Fake implements _i2.Condition {}
 
 class _FakeUVCondition_1 extends _i1.Fake implements _i3.UVCondition {}
 
+/// A class which mocks [CurrentLocation].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCurrentLocation extends _i1.Mock implements _i4.CurrentLocation {
+  MockCurrentLocation() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  double get latitude =>
+      (super.noSuchMethod(Invocation.getter(#latitude), returnValue: 0.0)
+          as double);
+  @override
+  double get longitude =>
+      (super.noSuchMethod(Invocation.getter(#longitude), returnValue: 0.0)
+          as double);
+  @override
+  String get locationName =>
+      (super.noSuchMethod(Invocation.getter(#locationName), returnValue: '')
+          as String);
+  @override
+  bool get hasListeners =>
+      (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
+          as bool);
+  @override
+  _i5.Future<void> refresh() =>
+      (super.noSuchMethod(Invocation.method(#refresh, []),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+  @override
+  void addListener(_i6.VoidCallback? listener) =>
+      super.noSuchMethod(Invocation.method(#addListener, [listener]),
+          returnValueForMissingStub: null);
+  @override
+  void removeListener(_i6.VoidCallback? listener) =>
+      super.noSuchMethod(Invocation.method(#removeListener, [listener]),
+          returnValueForMissingStub: null);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
+  void notifyListeners() =>
+      super.noSuchMethod(Invocation.method(#notifyListeners, []),
+          returnValueForMissingStub: null);
+}
+
 /// A class which mocks [Weather].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockWeather extends _i1.Mock implements _i4.Weather {
+class MockWeather extends _i1.Mock implements _i7.Weather {
   MockWeather() {
     _i1.throwOnMissingStub(this);
   }
@@ -46,23 +93,24 @@ class MockWeather extends _i1.Mock implements _i4.Weather {
       (super.noSuchMethod(Invocation.getter(#uvCondition),
           returnValue: _FakeUVCondition_1()) as _i3.UVCondition);
   @override
-  List<_i5.DailyForecast> get dailyForecasts =>
+  List<_i8.DailyForecast> get dailyForecasts =>
       (super.noSuchMethod(Invocation.getter(#dailyForecasts),
-          returnValue: <_i5.DailyForecast>[]) as List<_i5.DailyForecast>);
+          returnValue: <_i8.DailyForecast>[]) as List<_i8.DailyForecast>);
   @override
   bool get hasListeners =>
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  _i6.Future<void> load() => (super.noSuchMethod(Invocation.method(#load, []),
-      returnValue: Future<void>.value(),
-      returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+  _i5.Future<void> load(double? latitude, double? longitude) =>
+      (super.noSuchMethod(Invocation.method(#load, [latitude, longitude]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
-  void addListener(_i7.VoidCallback? listener) =>
+  void addListener(_i6.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i7.VoidCallback? listener) =>
+  void removeListener(_i6.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:local_weather/models/condition.dart';
+import 'package:local_weather/models/current_location.dart';
 import 'package:local_weather/models/user_preferences.dart';
 import 'package:local_weather/models/weather.dart';
 import 'package:local_weather/pages/current_weather_page.dart';
@@ -11,11 +12,15 @@ import 'package:provider/provider.dart';
 
 import 'current_weather_page_test.mocks.dart';
 
+final currentLocation = MockCurrentLocation();
 final weather = MockWeather();
 final userPreferences = UserPreferences();
 
 Widget createWidget() => MultiProvider(
       providers: [
+        ChangeNotifierProvider<CurrentLocation>.value(
+          value: currentLocation,
+        ),
         ChangeNotifierProvider<UserPreferences>.value(
           value: userPreferences,
         ),
@@ -28,13 +33,19 @@ Widget createWidget() => MultiProvider(
       ),
     );
 
-@GenerateMocks([Weather])
+@GenerateMocks([CurrentLocation, Weather])
 void main() {
   final condition = Condition.fromRawCondition(800);
 
   setUp(() {
+    when(currentLocation.locationName).thenReturn('New London, WI');
     when(weather.condition).thenReturn(condition);
     when(weather.temperature).thenReturn(293.45);
+  });
+
+  testWidgets('displays the location name', (tester) async {
+    await tester.pumpWidget(createWidget());
+    expect(find.text('New London, WI'), findsOneWidget);
   });
 
   testWidgets('displays the condition text', (tester) async {

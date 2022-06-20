@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:local_weather/models/current_location.dart';
 import 'package:local_weather/models/weather.dart';
 import 'package:local_weather/pages/current_weather_page.dart';
 import 'package:local_weather/pages/forecast_page.dart';
@@ -39,15 +42,32 @@ class _TabsPageState extends State<TabsPage> {
       title: 'UV Index',
     ),
   ];
+  Timer? _refreshTimer;
 
   int _currentTabIndex = 0;
+
+  Future _loadData() async {
+    final currentLocation =
+        Provider.of<CurrentLocation>(context, listen: false);
+    final weather = Provider.of<Weather>(context, listen: false);
+    await currentLocation.refresh();
+    await weather.load(currentLocation.latitude, currentLocation.longitude);
+  }
 
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<Weather>(context, listen: false).load();
+      _loadData();
+      _refreshTimer =
+          Timer.periodic(const Duration(minutes: 5), (_) => _loadData());
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _refreshTimer?.cancel();
+    super.dispose();
   }
 
   @override

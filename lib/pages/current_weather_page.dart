@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:local_weather/models/current_location.dart';
 import 'package:local_weather/models/user_preferences.dart';
 import 'package:local_weather/models/weather.dart';
 import 'package:local_weather/widgets/condition_image.dart';
@@ -11,6 +12,7 @@ class CurrentWeatherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final location = Provider.of<CurrentLocation>(context);
     final weather = Provider.of<Weather>(context);
     final userPreferences =
         Provider.of<UserPreferences>(context, listen: false);
@@ -22,7 +24,7 @@ class CurrentWeatherPage extends StatelessWidget {
             height: 40,
           ),
           Text(
-            'Madison, WI',
+            location.locationName,
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(

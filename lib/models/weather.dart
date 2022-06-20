@@ -21,10 +21,10 @@ class Weather with ChangeNotifier {
   UVCondition get uvCondition => _uvCondition;
   List<DailyForecast> get dailyForecasts => [..._dailyForecasts];
 
-  Future<void> load() async {
+  Future<void> load(double latitude, double longitude) async {
     final url = Uri.https('api.openweathermap.org', '/data/2.5/onecall', {
-      'lat': '43.074085',
-      'lon': '-89.381027',
+      'lat': latitude.toString(),
+      'lon': longitude.toString(),
       'exclude': 'minutely',
       'appid': dotenv.env['WEATHER_KEY'],
     });

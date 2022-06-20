@@ -54,9 +54,10 @@ class MockWeather extends _i1.Mock implements _i4.Weather {
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  _i6.Future<void> load() => (super.noSuchMethod(Invocation.method(#load, []),
-      returnValue: Future<void>.value(),
-      returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+  _i6.Future<void> load(double? latitude, double? longitude) =>
+      (super.noSuchMethod(Invocation.method(#load, [latitude, longitude]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override
   void addListener(_i7.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),

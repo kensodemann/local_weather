@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:local_weather/models/condition.dart';
+import 'package:local_weather/models/current_location.dart';
 import 'package:local_weather/models/user_preferences.dart';
 import 'package:local_weather/models/uv_condition.dart';
 import 'package:local_weather/models/weather.dart';
@@ -14,11 +15,15 @@ import 'package:provider/provider.dart';
 
 import 'tabs_page_test.mocks.dart';
 
-final weather = MockWeather();
+final currentLocation = MockCurrentLocation();
 final userPreferences = UserPreferences();
+final weather = MockWeather();
 
 Widget createWidget() => MultiProvider(
       providers: [
+        ChangeNotifierProvider<CurrentLocation>.value(
+          value: currentLocation,
+        ),
         ChangeNotifierProvider<UserPreferences>.value(
           value: userPreferences,
         ),
@@ -31,10 +36,13 @@ Widget createWidget() => MultiProvider(
       ),
     );
 
-@GenerateMocks([Weather])
+@GenerateMocks([CurrentLocation, Weather])
 void main() {
   setUp(() {
     reset(weather);
+    when(currentLocation.latitude).thenReturn(42.0);
+    when(currentLocation.longitude).thenReturn(-71.0);
+    when(currentLocation.locationName).thenReturn('New London, WI');
     when(weather.condition).thenReturn(Condition.fromRawCondition(800));
     when(weather.dailyForecasts).thenReturn([]);
     when(weather.uvCondition).thenReturn(UVCondition.fromIndex(2.9));
