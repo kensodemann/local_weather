@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:http/http.dart' as http;
 import 'package:local_weather/models/user_preferences.dart';
 import 'package:local_weather/models/weather.dart';
 import 'package:local_weather/pages/tabs_page.dart';
@@ -16,10 +17,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final httpClient = http.Client();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<Weather>(
-          create: (_) => Weather(),
+          create: (_) => Weather(httpClient),
         ),
         ChangeNotifierProvider<UserPreferences>(
           create: (_) => UserPreferences(),

@@ -2,7 +2,7 @@ class _ImagePaths {
   static const cloudy = 'assets/images/cloudy.png';
   static const fog = 'assets/images/fog.png';
   static const lightRain = 'assets/images/light-rain.png';
-  static const shower = 'assets/images/-shower.png';
+  static const shower = 'assets/images/shower.png';
   static const snow = 'assets/images/snow.png';
   static const sunny = 'assets/images/sunny.png';
   static const sunnyThunderstorm = 'assets/images/sunny-tstorm.png';
@@ -11,12 +11,21 @@ class _ImagePaths {
 }
 
 class Condition {
-  final String title;
-  final String description;
-  final String image;
+  final String _title;
+  final String _description;
+  final String _image;
 
   const Condition(
-      {required this.title, required this.description, required this.image});
+      {required String title,
+      required String description,
+      required String image})
+      : _title = title,
+        _description = description,
+        _image = image;
+
+  String get title => _title;
+  String get description => _description;
+  String get image => _image;
 
   factory Condition.fromJson(Map<String, dynamic> json) {
     return Condition.fromRawCondition(json['weather'][0]['id'] as int);
@@ -123,32 +132,32 @@ class Condition {
       case 313:
         return const Condition(
           title: 'Drizzle',
-          description: 'Light drizzle',
+          description: 'Rain and drizzle',
           image: _ImagePaths.lightRain,
         );
       case 314:
         return const Condition(
           title: 'Drizzle',
-          description: 'Drizzle',
-          image: _ImagePaths.lightRain,
-        );
-      case 315:
-        return const Condition(
-          title: 'Drizzle',
           description: 'Heavy drizzle',
           image: _ImagePaths.lightRain,
         );
+      case 321:
+        return const Condition(
+          title: 'Drizzle',
+          description: 'Shower drizzle',
+          image: _ImagePaths.shower,
+        );
       case 500:
         return const Condition(
-          title: 'Light rain',
+          title: 'Rain',
           description: 'Light rain',
           image: _ImagePaths.lightRain,
         );
       case 501:
         return const Condition(
-          title: 'Light rain',
-          description: 'Moderate rain',
-          image: _ImagePaths.lightRain,
+          title: 'Rain',
+          description: 'Rain',
+          image: _ImagePaths.shower,
         );
       case 502:
         return const Condition(
@@ -168,7 +177,7 @@ class Condition {
           description: 'Extreme rain',
           image: _ImagePaths.shower,
         );
-      case 505:
+      case 511:
         return const Condition(
           title: 'Freezing rain',
           description: 'Freezing rain',
@@ -192,7 +201,7 @@ class Condition {
           description: 'Heavy shower',
           image: _ImagePaths.shower,
         );
-      case 523:
+      case 531:
         return const Condition(
           title: 'Shower',
           description: 'Ragged shower',
@@ -236,32 +245,32 @@ class Condition {
         );
       case 615:
         return const Condition(
-          title: 'Mixed snow',
+          title: 'Rain and snow',
           description: 'Light rain and snow',
           image: _ImagePaths.snow,
         );
       case 616:
         return const Condition(
-          title: 'Mixed snow',
-          description: 'Rain and snow',
+          title: 'Rain and snow',
+          description: 'Mixed rain and snow',
           image: _ImagePaths.snow,
         );
       case 620:
         return const Condition(
-          title: 'Mixed snow',
-          description: 'Light shower snow',
+          title: 'Snow',
+          description: 'Light snow shower',
           image: _ImagePaths.snow,
         );
       case 621:
         return const Condition(
-          title: 'Mixed snow',
-          description: 'Shower snow',
+          title: 'Snow',
+          description: 'Snow shower',
           image: _ImagePaths.snow,
         );
       case 622:
         return const Condition(
-          title: 'Mixed snow',
-          description: 'Heavy shower snow',
+          title: 'Snow',
+          description: 'Heavy snow shower',
           image: _ImagePaths.snow,
         );
       case 701:
@@ -327,7 +336,7 @@ class Condition {
       case 800:
         return const Condition(
           title: 'Clear',
-          description: 'Clear',
+          description: 'Clear sky',
           image: _ImagePaths.sunny,
         );
       case 801:

@@ -1,15 +1,23 @@
 class UVCondition {
-  final double uvIndex;
-  final int riskFactor;
-  final String description;
-  final String advice;
+  final double _uvIndex;
+  final int _riskFactor;
+  final String _description;
+  final String _advice;
 
   const UVCondition({
-    required this.uvIndex,
-    required this.riskFactor,
-    required this.description,
-    required this.advice,
-  });
+    required double uvIndex,
+    required int riskFactor,
+    required String description,
+    required String advice,
+  })  : _uvIndex = uvIndex,
+        _riskFactor = riskFactor,
+        _description = description,
+        _advice = advice;
+
+  double get uvIndex => _uvIndex;
+  int get riskFactor => _riskFactor;
+  String get description => _description;
+  String get advice => _advice;
 
   factory UVCondition.fromJson(Map<String, dynamic> json) {
     return UVCondition.fromIndex(json['uvi'] as double);

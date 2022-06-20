@@ -1,17 +1,25 @@
 import 'package:local_weather/models/condition.dart';
 
 class DailyForecast {
-  DateTime date;
-  Condition condition;
-  double high;
-  double low;
+  DateTime _date;
+  Condition _condition;
+  double _high;
+  double _low;
 
   DailyForecast({
-    required this.date,
-    required this.high,
-    required this.low,
-    required this.condition,
-  });
+    required DateTime date,
+    required double high,
+    required double low,
+    required Condition condition,
+  })  : _date = date,
+        _high = high,
+        _low = low,
+        _condition = condition;
+
+  DateTime get date => _date;
+  Condition get condition => _condition;
+  double get high => _high;
+  double get low => _low;
 
   factory DailyForecast.fromJson(Map<String, dynamic> json) {
     return DailyForecast(
