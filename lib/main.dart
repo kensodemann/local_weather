@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Local Weather',
         theme: theme,
-        home: const TabsPage(title: 'Local Weather'),
+        home: const TabsPage(),
       ),
     );
   }

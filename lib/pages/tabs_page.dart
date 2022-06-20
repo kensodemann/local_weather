@@ -16,9 +16,9 @@ class _Page {
 }
 
 class TabsPage extends StatefulWidget {
-  const TabsPage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const TabsPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<TabsPage> createState() => _TabsPageState();
