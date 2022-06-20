@@ -31,7 +31,7 @@ class Weather with ChangeNotifier {
     final response = await _httpClient.get(url);
     final rawData = json.decode(response.body);
     final daily = rawData['daily'].toList();
-    _temperature = rawData['current']['temp'] as double;
+    _temperature = double.parse(rawData['current']['temp'].toString());
     _condition = Condition.fromJson(rawData['current']);
     _uvCondition = UVCondition.fromJson(rawData['current']);
     _dailyForecasts =

@@ -40,5 +40,26 @@ void main() {
       final forecast = DailyForecast.fromJson(json);
       expect(forecast.condition, condition);
     });
+
+    test('handles integer temperatures', () {
+      const intJson = {
+        'dt': 1642226400,
+        'temp': {
+          'min': 290,
+          'max': 302,
+        },
+        'weather': [
+          {
+            'id': 800,
+            'main': 'Clear',
+            'description': 'clear sky',
+            'icon': '01d',
+          },
+        ],
+      };
+      final forecast = DailyForecast.fromJson(intJson);
+      expect(forecast.low, 290.0);
+      expect(forecast.high, 302.0);
+    });
   });
 }

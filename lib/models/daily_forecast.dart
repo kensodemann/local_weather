@@ -25,8 +25,8 @@ class DailyForecast {
     return DailyForecast(
       date: DateTime.fromMillisecondsSinceEpoch(json['dt'] * 1000),
       condition: Condition.fromJson(json),
-      low: json['temp']['min'] as double,
-      high: json['temp']['max'] as double,
+      low: double.parse(json['temp']['min'].toString()),
+      high: double.parse(json['temp']['max'].toString()),
     );
   }
 }

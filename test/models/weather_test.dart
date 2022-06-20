@@ -126,5 +126,15 @@ void main() {
       await weather.load(43.224, -89.843);
       expect(weather.dailyForecasts.length, 0);
     });
+
+    test('should handle a integer temperature', () async {
+      var newData = {...data};
+      (newData["current"] as Map<String, dynamic>)["temp"] = 282;
+      when(client.get(url))
+          .thenAnswer((_) async => http.Response(jsonEncode(newData), 200));
+      final weather = Weather(client);
+      await weather.load(43.224, -89.843);
+      expect(weather.temperature, 282.0);
+    });
   });
 }
