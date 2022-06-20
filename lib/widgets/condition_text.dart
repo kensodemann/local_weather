@@ -5,9 +5,9 @@ class ConditionText extends StatelessWidget {
   final Condition condition;
   final TextStyle? style;
 
-  const ConditionText({
+  const ConditionText(
+    this.condition, {
     Key? key,
-    required this.condition,
     this.style,
   }) : super(key: key);
 

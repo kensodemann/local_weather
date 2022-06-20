@@ -11,9 +11,9 @@ class Temperature extends StatelessWidget {
   final double temperature;
   final TextStyle? style;
 
-  const Temperature({
+  const Temperature(
+    this.temperature, {
     Key? key,
-    required this.temperature,
     this.style,
   }) : super(key: key);
 

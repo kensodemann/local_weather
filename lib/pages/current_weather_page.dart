@@ -30,15 +30,16 @@ class CurrentWeatherPage extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () => userPreferences.toggleScale(),
-            child: Temperature(
-              temperature: weather.temperature,
-            ),
+            child: Temperature(weather.temperature),
           ),
           const SizedBox(
             height: 20,
           ),
-          ConditionImage(condition: weather.condition, size: 192),
-          ConditionText(condition: weather.condition),
+          ConditionImage(
+            weather.condition,
+            size: 192,
+          ),
+          ConditionText(weather.condition),
         ],
       ),
     );

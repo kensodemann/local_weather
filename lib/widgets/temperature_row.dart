@@ -22,7 +22,7 @@ class TemperatureRow extends StatelessWidget {
         ),
         const Spacer(),
         Temperature(
-          temperature: temperature,
+          temperature,
           style: theme.textTheme.titleSmall,
         )
       ],

@@ -23,7 +23,7 @@ class DailyConditionDetails extends StatelessWidget {
           style: theme.textTheme.titleMedium,
         ),
         ConditionText(
-          condition: forecast.condition,
+          forecast.condition,
           style: theme.textTheme.titleSmall,
         ),
         TemperatureRow(

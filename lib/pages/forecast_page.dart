@@ -19,7 +19,7 @@ class ForecastPage extends StatelessWidget {
           child: Row(
             children: [
               ConditionImage(
-                condition: forecasts[index].condition,
+                forecasts[index].condition,
                 size: 72,
               ),
               const Spacer(),

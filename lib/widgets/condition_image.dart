@@ -5,9 +5,9 @@ class ConditionImage extends StatelessWidget {
   final Condition condition;
   final double? size;
 
-  const ConditionImage({
+  const ConditionImage(
+    this.condition, {
     Key? key,
-    required this.condition,
     this.size,
   }) : super(key: key);
 
