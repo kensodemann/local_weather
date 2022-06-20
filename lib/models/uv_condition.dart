@@ -20,7 +20,8 @@ class UVCondition {
   String get advice => _advice;
 
   factory UVCondition.fromJson(Map<String, dynamic> json) {
-    return UVCondition.fromIndex(json['uvi'] as double);
+    final uvIndex = json['uvi'].toString();
+    return UVCondition.fromIndex(double.parse(uvIndex));
   }
 
   factory UVCondition.fromIndex(double uvIndex) {

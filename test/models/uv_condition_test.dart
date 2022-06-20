@@ -108,5 +108,39 @@ void main() {
       expect(actualUvCondition.description, expectedUvCondition.description);
       expect(actualUvCondition.uvIndex, expectedUvCondition.uvIndex);
     });
+
+    test('handles an integer index', () {
+      const json = {
+        "dt": 1646318698,
+        "sunrise": 1646306882,
+        "sunset": 1646347929,
+        "temp": 282.21,
+        "feels_like": 278.41,
+        "pressure": 1014,
+        "humidity": 65,
+        "dew_point": 275.99,
+        "uvi": 5,
+        "clouds": 40,
+        "visibility": 10000,
+        "wind_speed": 8.75,
+        "wind_deg": 360,
+        "wind_gust": 13.89,
+        "weather": [
+          {
+            "id": 802,
+            "main": "Clouds",
+            "description": "scattered clouds",
+            "icon": "03d"
+          }
+        ]
+      };
+
+      final expectedUvCondition = UVCondition.fromIndex(5.0);
+      final actualUvCondition = UVCondition.fromJson(json);
+      expect(actualUvCondition.advice, expectedUvCondition.advice);
+      expect(actualUvCondition.riskFactor, expectedUvCondition.riskFactor);
+      expect(actualUvCondition.description, expectedUvCondition.description);
+      expect(actualUvCondition.uvIndex, expectedUvCondition.uvIndex);
+    });
   });
 }
